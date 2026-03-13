@@ -4,5 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: 55792375d71dadf45be2320daa7f9f20
+  - enabled: 1
+    path: Assets/Scenes/UmezakiScene.unity
+    guid: 7d43b52d0023856438948a5c7580b9b9
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
