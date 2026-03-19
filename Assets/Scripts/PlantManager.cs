@@ -2,39 +2,54 @@ using UnityEngine;
 
 public class PlantManager : MonoBehaviour
 {
-    public GameObject kome0Prefab; // 植えるPrefab
-    public float plantHeight = 0.5f; // 植える高さ
+    public GameObject cropPrefab;
+    public float plantHeight = 0.5f;
+    public float rayDistance = 3f;
 
-    private bool isInField = false;
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Field"))
-        {
-            isInField = true;
-            Debug.Log("[畑に入った]");
-        }
-    }
-    
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Field"))
-        {
-            isInField = false;
-            Debug.Log("[畑から出た]");
-        }
-    }
-    
     void Update()
     {
-        if (isInField && Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            // プレイヤーの足元にkome0を生成
-            Vector3 plantPos = transform.position + transform.forward * 1f;
-            plantPos.y = plantHeight;
+            // 足元からRay
+            Ray ray = new Ray(transform.position + Vector3.down * 1f, Vector3.down);
+            RaycastHit hit;
 
-            Instantiate(kome0Prefab, plantPos, Quaternion.identity);
-            Debug.Log("[米を植えた] 位置： " + plantPos);
+            if (Physics.Raycast(ray, out hit, rayDistance))
+            {
+                Debug.Log("当たった: " + hit.collider.name);
+
+                if (hit.collider.CompareTag("Field"))
+                {
+                    GameObject field = hit.collider.gameObject;
+
+                    // すでに植えてあるか
+                    if (field.transform.childCount > 0)
+                    {
+                        Debug.Log("すでに植えてある");
+                        return;
+                    }
+
+                    // 植える位置
+                    Vector3 plantPos = field.transform.position;
+                    plantPos.y += plantHeight;
+
+                    // 作物生成
+                    GameObject crop = Instantiate(cropPrefab, plantPos, Quaternion.identity);
+
+                    // 畑の子にする
+                    crop.transform.parent = field.transform;
+
+                    Debug.Log("植えた！");
+                }
+                else
+                {
+                    Debug.Log("畑じゃない：" + hit.collider.name);
+                }
+            }
+            else
+            {
+                Debug.Log("何も当たってない");
+            }
         }
     }
 }
