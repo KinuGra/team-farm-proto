@@ -2,18 +2,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float rotateSpeed = 120f;
+    public float speed = 5f;
+    private Rigidbody rb;
 
-    void Update()
+    void Start()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        rb = GetComponent<Rigidbody>();
+    }
 
-        Vector3 move = transform.forward * vertical * moveSpeed * Time.deltaTime;
-        transform.position += move;
+    void FixedUpdate()
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
 
-        float rotation = horizontal * rotateSpeed * Time.deltaTime;
-        transform.Rotate(0, rotation, 0);
+        Vector3 move = new Vector3(x, 0, z);
+
+        rb.linearVelocity = new Vector3(move.x * speed, rb.linearVelocity.y, move.z * speed);
+
+        if (move != Vector3.zero)
+        {
+            transform.forward = move;
+        }
     }
 }

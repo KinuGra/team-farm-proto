@@ -12,6 +12,6 @@ public class SimpleClockUI : MonoBehaviour
         float rotation = timeRate * 360f;
 
         // 上を0時にする
-        hand.localRotation = Quaternion.Euler(0, 0, -rotation + 90f);
+        hand.localRotation = Quaternion.Euler(0, 0, -rotation);
     }
 }
