@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
-    public GameObject[] growthStages; // 成長段階（見た目）
-    public float growTime = 5f; // 次の段階までの時間
+    public GameObject[] growthStages;
+    public float growTime = 5f;
 
     private float timer = 0f;
     private int stage = 0;
 
     void Start()
     {
+        stage = 0;
         UpdateStage();
     }
 
@@ -35,5 +36,11 @@ public class Crop : MonoBehaviour
         {
             growthStages[i].SetActive(i == stage);
         }
+    }
+
+    // 👇 追加
+    public bool IsGrown()
+    {
+        return stage >= growthStages.Length - 1;
     }
 }
