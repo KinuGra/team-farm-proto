@@ -72,7 +72,6 @@ public class PlantManager : MonoBehaviour
                 {
                     if (crop.IsGrown())
                     {
-                        Inventory.instance.AddItem("Rice");
                         Destroy(crop.gameObject);
                         Debug.Log("収穫した！");
                     }
