@@ -1,5 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6755979159815934896
 --- !u!1 &3978043144571440981
 GameObject:
   m_ObjectHideFlags: 0
@@ -8,6 +9,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 2698034895325508356}
+  - component: {fileID: 759292649981150870}
+  - component: {fileID: 4984474756740716243}
+  - component: {fileID: 2721522959073406254}
   - component: {fileID: 1794142059124395285}
   - component: {fileID: 9178033105606583714}
   - component: {fileID: 6642627054486400681}
@@ -19,12 +24,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &2698034895325508356
 --- !u!4 &1794142059124395285
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755979159815934896}
   m_GameObject: {fileID: 3978043144571440981}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -34,12 +41,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &759292649981150870
 --- !u!33 &9178033105606583714
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755979159815934896}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &4984474756740716243
   m_GameObject: {fileID: 3978043144571440981}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &6642627054486400681
@@ -48,6 +59,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755979159815934896}
   m_GameObject: {fileID: 3978043144571440981}
   m_Enabled: 1
   m_CastShadows: 1
@@ -91,12 +103,14 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2721522959073406254
 --- !u!64 &3367200655779453671
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6755979159815934896}
   m_GameObject: {fileID: 3978043144571440981}
   m_Material: {fileID: 0}
   m_IncludeLayers:
