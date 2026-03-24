@@ -1,0 +1,8 @@
+*.cs linguist-language=C#
+
+*.shader linguist-vendored
+*.compute linguist-vendored
+*.cginc linguist-vendored
+*.hlsl linguist-vendored
+*.shadergraph linguist-vendored
+Assets/Shaders/** linguist-vendored
