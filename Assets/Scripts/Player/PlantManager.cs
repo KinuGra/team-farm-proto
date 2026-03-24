@@ -72,7 +72,7 @@ public class PlantManager : MonoBehaviour
                 {
                     if (crop.IsGrown())
                     {
-                        Inventory.instance.AddItem("米"); // ←ここ追加
+                        Inventory.instance.AddItem("Rice");
                         Destroy(crop.gameObject);
                         Debug.Log("収穫した！");
                     }
