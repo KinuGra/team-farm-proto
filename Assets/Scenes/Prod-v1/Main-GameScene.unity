@@ -413,6 +413,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9069176684393270234, guid: 002572b9fe295b745b0914b0d51c6149, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -755,8 +759,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 547916242}
-  offset: {x: 0, y: 8, z: -6}
+  offset: {x: 0, y: 6, z: -8}
   smoothTime: 0.2
+  lookHeight: 2
 --- !u!114 &1959086248
 MonoBehaviour:
   m_ObjectHideFlags: 0
