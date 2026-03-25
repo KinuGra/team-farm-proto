@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CreatureAI : MonoBehaviour
 {
-    public float moveSpeed = 3f;
-    public float detectRange = 20f;
+    public float moveSpeed = 5f;
+    public float detectRange = 30f;
     public float attackRange = 1.5f;
 
     private Transform player;
