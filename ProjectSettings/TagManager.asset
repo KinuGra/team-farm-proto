@@ -7,6 +7,8 @@ TagManager:
   - Item
   - Field
   - Enemy
+  - Ground
+  - Sea
   layers:
   - Default
   - TransparentFX
