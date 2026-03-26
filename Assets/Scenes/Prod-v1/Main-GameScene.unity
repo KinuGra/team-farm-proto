@@ -14,8 +14,8 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.76729554, g: 0.586964, b: 0.49946588, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -842,7 +842,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -4136662049400649417, guid: 4b2be6ef0cda28e4eb29ae484fa54a8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1705265642}
+    - targetCorrespondingSourceObject: {fileID: -4136662049400649417, guid: 4b2be6ef0cda28e4eb29ae484fa54a8c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1705265641}
   m_SourcePrefab: {fileID: 100100000, guid: 4b2be6ef0cda28e4eb29ae484fa54a8c, type: 3}
 --- !u!1001 &1087889258
 PrefabInstance:
@@ -1986,6 +1992,45 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2da01e3f137fc446a709bcd6f76439c, type: 3}
+--- !u!1 &1705265639 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4136662049400649417, guid: 4b2be6ef0cda28e4eb29ae484fa54a8c, type: 3}
+  m_PrefabInstance: {fileID: 1085621083}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1705265641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705265639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d8546e94c8b554d9cd69836786877d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneChangeTrigger
+  sceneName: EscapeScene
+--- !u!65 &1705265642
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705265639}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4, y: 4, z: 4}
+  m_Center: {x: 0, y: 0.0000038146973, z: 0}
 --- !u!4 &1733739073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e2da01e3f137fc446a709bcd6f76439c, type: 3}
