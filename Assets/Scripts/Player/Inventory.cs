@@ -22,18 +22,17 @@ public class Inventory : MonoBehaviour
     }
     
     // アイテムを追加
-    public void AddItem(string itemName)
+    public void AddItem(string name, int amount = 1)
     {
-        if (items.ContainsKey(itemName))
+        if (items.ContainsKey(name))
         {
-            items[itemName]++;
+            items[name] += amount;
         }
         else
         {
-            items[itemName] = 1;
+            items[name] = amount;
         }
-        
-        Debug.Log("[インベントリ] " + itemName + " x" + items[itemName]);
+        Debug.Log(name + " x" + amount + " 追加（合計: " + items[name] + "）");
     }
     
     // アイテムを消費
