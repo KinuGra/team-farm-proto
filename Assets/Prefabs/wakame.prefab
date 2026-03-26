@@ -9,12 +9,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.09
+      value: 4.364
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -48,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
       propertyPath: m_Name
       value: wakame
@@ -59,6 +75,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7213172168944309008}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1492294283278954168}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 164961955789548103}
     - targetCorrespondingSourceObject: {fileID: 6868068207862487623, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8185743794257000754}
@@ -90,6 +112,41 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &-1492294283278954168
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417236281344537869}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.561061, z: 1}
+  m_Center: {x: 0, y: 0.5094948, z: 0}
+--- !u!114 &164961955789548103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417236281344537869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15dbe0d4f4804864b91fc7e0576d8add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableItem
+  itemName: Wakame
+  amount: 1
 --- !u!1 &6222704042208072219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6868068207862487623, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
