@@ -1,21 +1,22 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Campfire : MonoBehaviour
 {
     public float interactDistance = 2f;
 
-    [Header("ハイライト")]
-    public Color highlightColor = Color.yellow;
-
-    private Renderer rend;
-    private Color originalColor;
     private Transform player;
+    private HighlightController highlight;
+
+    private Dictionary<string, string> recipes = new Dictionary<string, string>()
+    {
+        { "Rice", "CookedRice" },
+        { "Wakame", "CookedWakame" }
+    };
 
     void Start()
     {
-        rend = GetComponentInChildren<Renderer>();
-        rend.material = new Material(rend.material);
-        originalColor = rend.material.color;
+        highlight = GetComponent<HighlightController>();
 
         GameObject p = GameObject.FindWithTag("Player");
         if (p != null)
@@ -29,35 +30,39 @@ public class Campfire : MonoBehaviour
         if (player == null) return;
 
         float distance = Vector3.Distance(transform.position, player.position);
-
-        // ⭐ 距離＋アイテムチェック
         bool isNear = distance <= interactDistance;
-        bool hasRice = Inventory.instance.GetItemCount("Rice") > 0;
+        bool hasAnyItem = HasAnyCookableItem();
 
-        bool canCook = isNear && hasRice;
+        bool canCook = isNear && hasAnyItem;
 
-        if (canCook)
+        highlight.SetHighlight(canCook);
+
+        if (canCook && Input.GetKeyDown(KeyCode.F))
         {
-            rend.material.color = highlightColor;
+            TryCook();
+        }
+    }
 
-            // ⭐ 絶対ここに入れる！！
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                TryCook();
-            }
-        }
-        else
+    bool HasAnyCookableItem()
+    {
+        foreach (var recipe in recipes)
         {
-            rend.material.color = originalColor;
+            if (Inventory.instance.GetItemCount(recipe.Key) > 0)
+                return true;
         }
+        return false;
     }
 
     void TryCook()
     {
-        if (Inventory.instance.UseItem("Rice", 1))
+        foreach (var recipe in recipes)
         {
-            Inventory.instance.AddItem("CookedRice");
-            Debug.Log("ご飯を作った！");
+            if (Inventory.instance.UseItem(recipe.Key, 1))
+            {
+                Inventory.instance.AddItem(recipe.Value);
+                Debug.Log(recipe.Key + " → " + recipe.Value);
+                return;
+            }
         }
     }
 }

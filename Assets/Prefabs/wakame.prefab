@@ -81,6 +81,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 164961955789548103}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6602034904318974031}
     - targetCorrespondingSourceObject: {fileID: 6868068207862487623, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8185743794257000754}
@@ -147,6 +150,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CollectableItem
   itemName: Wakame
   amount: 1
+--- !u!114 &-6602034904318974031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417236281344537869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f58f64733857b54d8bc1bd157812985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HighlightController
+  highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &6222704042208072219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6868068207862487623, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
