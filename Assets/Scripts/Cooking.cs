@@ -2,21 +2,19 @@ using UnityEngine;
 
 public class CookingTable : MonoBehaviour
 {
-    public float interactDistance = 3f;
+    public float interactDistance = 2f;
 
     private Transform player;
+    private HighlightController highlight;
 
     void Start()
     {
+        highlight = GetComponent<HighlightController>();
+
         GameObject p = GameObject.FindWithTag("Player");
         if (p != null)
         {
             player = p.transform;
-            Debug.Log("プレイヤー見つけた");
-        }
-        else
-        {
-            Debug.LogError("Playerタグが見つからない！");
         }
     }
 
@@ -25,44 +23,27 @@ public class CookingTable : MonoBehaviour
         if (player == null) return;
 
         float dist = Vector3.Distance(transform.position, player.position);
-
-        // 距離チェックログ
-        Debug.Log("距離: " + dist);
-
-        if (dist <= interactDistance)
-        {
-            Debug.Log("範囲内にいる");
-
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                Debug.Log("F押された！");
-                TryCraftOnigiri();
-            }
-        }
-    }
-
-    void TryCraftOnigiri()
-    {
-        Debug.Log("調理処理スタート");
+        bool isNear = dist <= interactDistance;
 
         bool hasRice = Inventory.instance.GetItemCount("CookedRice") > 0;
         bool hasWakame = Inventory.instance.GetItemCount("CookedWakame") > 0;
 
-        Debug.Log("CookedRice: " + hasRice);
-        Debug.Log("CookedWakame: " + hasWakame);
+        bool canCraft = isNear && hasRice && hasWakame;
 
-        if (hasRice && hasWakame)
+        highlight.SetHighlight(canCraft);
+
+        if (canCraft && Input.GetKeyDown(KeyCode.F))
         {
-            Inventory.instance.UseItem("CookedRice", 1);
-            Inventory.instance.UseItem("CookedWakame", 1);
-
-            Inventory.instance.AddItem("Onigiri", 1);
-
-            Debug.Log("🍙 おにぎりを作った！");
+            TryCraft();
         }
-        else
-        {
-            Debug.Log("❌ 材料が足りない！");
-        }
+    }
+
+    void TryCraft()
+    {
+        Inventory.instance.UseItem("CookedRice", 1);
+        Inventory.instance.UseItem("CookedWakame", 1);
+        Inventory.instance.AddItem("Onigiri", 1);
+
+        Debug.Log("🍙 おにぎり作った！");
     }
 }

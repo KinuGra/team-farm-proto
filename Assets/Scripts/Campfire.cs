@@ -5,14 +5,9 @@ public class Campfire : MonoBehaviour
 {
     public float interactDistance = 2f;
 
-    [Header("ハイライト")]
-    public Color highlightColor = Color.yellow;
-
-    private Renderer rend;
-    private Color originalColor;
     private Transform player;
+    private HighlightController highlight;
 
-    // ⭐ レシピ（入力 → 出力）
     private Dictionary<string, string> recipes = new Dictionary<string, string>()
     {
         { "Rice", "CookedRice" },
@@ -21,9 +16,7 @@ public class Campfire : MonoBehaviour
 
     void Start()
     {
-        rend = GetComponentInChildren<Renderer>();
-        rend.material = new Material(rend.material);
-        originalColor = rend.material.color;
+        highlight = GetComponent<HighlightController>();
 
         GameObject p = GameObject.FindWithTag("Player");
         if (p != null)
@@ -38,23 +31,15 @@ public class Campfire : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.position);
         bool isNear = distance <= interactDistance;
-
         bool hasAnyItem = HasAnyCookableItem();
 
         bool canCook = isNear && hasAnyItem;
 
-        if (canCook)
-        {
-            rend.material.color = highlightColor;
+        highlight.SetHighlight(canCook);
 
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                TryCook();
-            }
-        }
-        else
+        if (canCook && Input.GetKeyDown(KeyCode.F))
         {
-            rend.material.color = originalColor;
+            TryCook();
         }
     }
 
@@ -72,17 +57,12 @@ public class Campfire : MonoBehaviour
     {
         foreach (var recipe in recipes)
         {
-            string input = recipe.Key;
-            string output = recipe.Value;
-
-            if (Inventory.instance.UseItem(input, 1))
+            if (Inventory.instance.UseItem(recipe.Key, 1))
             {
-                Inventory.instance.AddItem(output);
-                Debug.Log(input + " → " + output + " に調理！");
-                return; // 1回で1つだけ
+                Inventory.instance.AddItem(recipe.Value);
+                Debug.Log(recipe.Key + " → " + recipe.Value);
+                return;
             }
         }
-
-        Debug.Log("調理できる素材がない！");
     }
 }

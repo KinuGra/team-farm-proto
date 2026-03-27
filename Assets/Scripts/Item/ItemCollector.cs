@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class ItemCollector : MonoBehaviour
 {
     private List<CollectableItem> itemsInRange = new List<CollectableItem>();
+    private CollectableItem currentHighlight;
 
     void Update()
     {
@@ -11,18 +12,16 @@ public class ItemCollector : MonoBehaviour
         {
             TryCollect();
         }
+
+        UpdateHighlight();
     }
 
-    void TryCollect()
+    void UpdateHighlight()
     {
-        // リストを掃除（Destroyされたものを除去）
         itemsInRange.RemoveAll(item => item == null);
 
-        if (itemsInRange.Count == 0) return;
-
-        // 一番近いアイテムを回収
-        CollectableItem closest = null;
         float closestDist = float.MaxValue;
+        CollectableItem closest = null;
 
         foreach (CollectableItem item in itemsInRange)
         {
@@ -34,28 +33,42 @@ public class ItemCollector : MonoBehaviour
             }
         }
 
+        if (currentHighlight != null && currentHighlight != closest)
+        {
+            var oldHi = currentHighlight.GetComponent<HighlightController>();
+            if (oldHi != null) oldHi.SetHighlight(false);
+        }
+
         if (closest != null)
         {
-            Inventory.instance.AddItem(closest.itemName, closest.amount);
-            Debug.Log(closest.itemName + " を回収！");
-            Destroy(closest.gameObject);
-            itemsInRange.Remove(closest);
+            var newHi = closest.GetComponent<HighlightController>();
+            if (newHi != null) newHi.SetHighlight(true);
         }
+
+        currentHighlight = closest;
+    }
+
+    void TryCollect()
+    {
+        if (currentHighlight == null) return;
+
+        Inventory.instance.AddItem(currentHighlight.itemName, currentHighlight.amount);
+        Destroy(currentHighlight.gameObject);
+        currentHighlight = null;
     }
 
     void OnTriggerEnter(Collider other)
     {
-        CollectableItem item = other.GetComponent<CollectableItem>();
+        var item = other.GetComponent<CollectableItem>();
         if (item != null)
         {
             itemsInRange.Add(item);
-            Debug.Log(item.itemName + " が回収範囲内");
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        CollectableItem item = other.GetComponent<CollectableItem>();
+        var item = other.GetComponent<CollectableItem>();
         if (item != null)
         {
             itemsInRange.Remove(item);
