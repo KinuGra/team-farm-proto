@@ -679,12 +679,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 599794080}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f37487e64b843ed478795df23fd92039, type: 3}
+  m_Script: {fileID: 11500000, guid: ea94ce1c033d7f141bddc9a595b43fca, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::preCameraFollow
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
   target: {fileID: 753975149}
-  offset: {x: 0, y: 6, z: -8}
-  smoothSpeed: 5
+  offset: {x: 0, y: 14, z: -8}
+  smoothTime: 0.2
+  lookHeight: 3
 --- !u!1001 &604799955
 PrefabInstance:
   m_ObjectHideFlags: 0
