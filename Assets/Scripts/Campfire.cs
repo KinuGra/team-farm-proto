@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Campfire : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class Campfire : MonoBehaviour
     private Renderer rend;
     private Color originalColor;
     private Transform player;
+
+    // ⭐ レシピ（入力 → 出力）
+    private Dictionary<string, string> recipes = new Dictionary<string, string>()
+    {
+        { "Rice", "CookedRice" },
+        { "Wakame", "CookedWakame" }
+    };
 
     void Start()
     {
@@ -29,18 +37,16 @@ public class Campfire : MonoBehaviour
         if (player == null) return;
 
         float distance = Vector3.Distance(transform.position, player.position);
-
-        // ⭐ 距離＋アイテムチェック
         bool isNear = distance <= interactDistance;
-        bool hasRice = Inventory.instance.GetItemCount("Rice") > 0;
 
-        bool canCook = isNear && hasRice;
+        bool hasAnyItem = HasAnyCookableItem();
+
+        bool canCook = isNear && hasAnyItem;
 
         if (canCook)
         {
             rend.material.color = highlightColor;
 
-            // ⭐ 絶対ここに入れる！！
             if (Input.GetKeyDown(KeyCode.F))
             {
                 TryCook();
@@ -52,12 +58,31 @@ public class Campfire : MonoBehaviour
         }
     }
 
+    bool HasAnyCookableItem()
+    {
+        foreach (var recipe in recipes)
+        {
+            if (Inventory.instance.GetItemCount(recipe.Key) > 0)
+                return true;
+        }
+        return false;
+    }
+
     void TryCook()
     {
-        if (Inventory.instance.UseItem("Rice", 1))
+        foreach (var recipe in recipes)
         {
-            Inventory.instance.AddItem("CookedRice");
-            Debug.Log("ご飯を作った！");
+            string input = recipe.Key;
+            string output = recipe.Value;
+
+            if (Inventory.instance.UseItem(input, 1))
+            {
+                Inventory.instance.AddItem(output);
+                Debug.Log(input + " → " + output + " に調理！");
+                return; // 1回で1つだけ
+            }
         }
+
+        Debug.Log("調理できる素材がない！");
     }
 }
