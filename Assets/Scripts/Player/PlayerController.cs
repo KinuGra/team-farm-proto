@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5f;
+    public float walkSpeed = 5.0f;
+    public float runSpeed = 9.0f;
+    float speed;
+
+    float x, z;
+    bool isRunning = false;
+    
     private Rigidbody rb;
     private Animator animator;
 
@@ -11,21 +17,33 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
-
+    void Update()
+    {
+        x = Input.GetAxis("Horizontal");
+        z = Input.GetAxis("Vertical");
+        isRunning = Input.GetKey(KeyCode.LeftShift);
+    }
     void FixedUpdate()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
         Vector3 move = new Vector3(x, 0, z);
 
+        speed = isRunning ? runSpeed : walkSpeed;
         rb.linearVelocity = new Vector3(move.x * speed, rb.linearVelocity.y, move.z * speed);
 
         // アニメーション切り替え
         bool isMoving = move.magnitude > 0.1f;
         if (animator != null)
         {
-            animator.SetBool("isWalking", isMoving);
+            if (isMoving)
+            {
+                animator.SetBool("isWalking", !isRunning);
+                animator.SetBool("isRunning", isRunning);
+            }
+            else
+            {
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", false);
+            }
         }
 
         if (move != Vector3.zero)

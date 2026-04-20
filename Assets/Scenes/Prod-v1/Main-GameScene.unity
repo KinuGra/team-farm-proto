@@ -2611,7 +2611,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 380078309061299217, guid: 097eb7f4b0ed88144b787ce4547196f4, type: 3}
       propertyPath: runSpeed
-      value: 1
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3329412861661819764, guid: 097eb7f4b0ed88144b787ce4547196f4, type: 3}
       propertyPath: m_Height
