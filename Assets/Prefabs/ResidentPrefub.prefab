@@ -130,4 +130,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f58f64733857b54d8bc1bd157812985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HighlightController
-  highlightColor: {r: 0.9924528, g: 0.9746971, b: 0.76961905, a: 1}
+  highlightColor: {r: 0.4188679, g: 0.4134674, b: 0.32165894, a: 1}

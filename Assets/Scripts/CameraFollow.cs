@@ -13,16 +13,12 @@ public class CameraFollow : MonoBehaviour
     public float lookHeight = 0.5f;
 
     private Vector3 velocity = Vector3.zero;
-    private float scale;
-    void Start(){
-        scale = target.localScale.x;
-    }
 
     void LateUpdate()
     {
         if (target == null) return;
 
-        Vector3 desiredPosition = target.position -target.forward*scale*distance + Vector3.up*scale*height;
+        Vector3 desiredPosition = target.position -target.forward*distance + Vector3.up*height;
 
         transform.position = Vector3.SmoothDamp(
             transform.position,
@@ -31,7 +27,7 @@ public class CameraFollow : MonoBehaviour
             smoothTime
         );
 
-        Vector3 lookTarget = target.position + target.forward*scale*lookDistance + Vector3.up*scale*lookHeight;
+        Vector3 lookTarget = target.position + target.forward*lookDistance + Vector3.up*lookHeight;
         transform.LookAt(lookTarget);
     }
 }

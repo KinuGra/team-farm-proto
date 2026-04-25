@@ -9,11 +9,11 @@ public class Inventory : MonoBehaviour
     // アイテム名と個数の辞書
     private Dictionary<string, int> items = new Dictionary<string, int>();
 
-    void Awake()
-    {
-        // シングルトンの判定
-        if (instance == null) {
+    void Awake(){
+        if (instance == null)
+        {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -67,4 +67,5 @@ public class Inventory : MonoBehaviour
     {
         return items;
     }
+
 }
