@@ -23,8 +23,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prod-v1/Main-TitleScene.unity
     guid: 17828bdc01bcb8c4589ed4d73957d6b1
-    path: Assets/Scenes/Prod-v1/Main-GameScene.unity
-    guid: 5ea7b37241756dc408a301bd92687bd9
   - enabled: 1
     path: Assets/Scenes/Prod-v1/EscapeScene.unity
     guid: 69eba816457a73a46ab1c05d245011e3

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class CameraFollow_escape : MonoBehaviour
+public class CameraFollow_birds_view : MonoBehaviour
 {
     public Transform target;
-    public Vector3 offset = new Vector3(0, 0, -3);
+    public Vector3 offset = new Vector3(0, 8, -6);
     public float smoothTime = 0.2f;
 
     public float lookHeight = 3.0f; // ★ 目線の高さ
