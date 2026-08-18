@@ -4,6 +4,10 @@ public class CookingTable : MonoBehaviour
 {
     public float interactDistance = 2f;
 
+    [SerializeField] private ItemData cookedRiceItem;
+    [SerializeField] private ItemData cookedWakameItem;
+    [SerializeField] private ItemData onigiriItem;
+
     private Transform player;
     private HighlightController highlight;
 
@@ -25,8 +29,8 @@ public class CookingTable : MonoBehaviour
         float dist = Vector3.Distance(transform.position, player.position);
         bool isNear = dist <= interactDistance;
 
-        bool hasRice = Inventory.instance.GetItemCount("CookedRice") > 0;
-        bool hasWakame = Inventory.instance.GetItemCount("CookedWakame") > 0;
+        bool hasRice = cookedRiceItem != null && InventoryManager.instance.GetItemCount(cookedRiceItem) > 0;
+        bool hasWakame = cookedWakameItem != null && InventoryManager.instance.GetItemCount(cookedWakameItem) > 0;
 
         bool canCraft = isNear && hasRice && hasWakame;
 
@@ -40,10 +44,13 @@ public class CookingTable : MonoBehaviour
 
     void TryCraft()
     {
-        Inventory.instance.UseItem("CookedRice", 1);
-        Inventory.instance.UseItem("CookedWakame", 1);
-        Inventory.instance.AddItem("Onigiri", 1);
+        if (cookedRiceItem == null || cookedWakameItem == null || onigiriItem == null) return;
 
-        Debug.Log("🍙 おにぎり作った！");
+        if (InventoryManager.instance.UseItem(cookedRiceItem, 1) &&
+            InventoryManager.instance.UseItem(cookedWakameItem, 1))
+        {
+            InventoryManager.instance.AddItem(onigiriItem, 1);
+            Debug.Log("🍙 おにぎり作った！");
+        }
     }
 }

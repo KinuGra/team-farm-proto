@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Transform tf;
     private Animator animator;
 
+    [SerializeField] private ItemData cookedRiceItem;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,7 +30,10 @@ public class PlayerController : MonoBehaviour
         // テスト用: Pキーでおにぎり取得
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Inventory.instance.AddItem("CookedRice");
+            if (cookedRiceItem != null)
+            {
+                InventoryManager.instance.AddItem(cookedRiceItem);
+            }
         }
     }
     void FixedUpdate()

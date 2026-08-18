@@ -31,11 +31,12 @@ public class InventoryUI : MonoBehaviour
 
     void UpdateDisplay()
     {
-        if (Inventory.instance == null) return;
+        if (InventoryManager.instance == null) return;
 
-        string text = "=== Inventory ===\n\n";
+        string text = "=== Inventory ===\n";
+        text += $"Slots: {InventoryManager.instance.CurrentSlots}/{InventoryManager.instance.MaxSlots}\n\n";
 
-        var items = Inventory.instance.GetAllItems();
+        var items = InventoryManager.instance.Items;
 
         if (items.Count == 0)
         {
@@ -43,9 +44,9 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
-            foreach (var item in items)
+            foreach (var stack in items)
             {
-                text += item.Key + "  x" + item.Value + "\n";
+                text += stack.ItemData.ItemName + "  x" + stack.Quantity + "\n";
             }
         }
 

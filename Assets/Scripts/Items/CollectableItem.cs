@@ -1,7 +1,35 @@
 using UnityEngine;
 
+/// <summary>
+/// フィールドに配置されているアイテムを表す
+/// プレイヤーが拾うとインベントリに追加される
+/// </summary>
 public class CollectableItem : MonoBehaviour
 {
-    public string itemName = "Wakame";  // Inspector で変更可能
-    public int amount = 1;
+    [SerializeField] private ItemData itemData;
+    [SerializeField] private int quantity = 1;
+
+    public ItemData ItemData => itemData;
+    public int Quantity => quantity;
+
+    private void OnValidate()
+    {
+        if (quantity < 1) quantity = 1;
+    }
+
+    /// <summary>
+    /// このアイテムを集める
+    /// </summary>
+    public bool Collect(InventoryManager inventory)
+    {
+        if (itemData == null || inventory == null) return false;
+
+        // 全て追加できるか判定
+        if (!inventory.CanAddItem(itemData, quantity)) return false;
+
+        // 全て追加できる場合のみ追加してオブジェクト削除
+        inventory.AddItem(itemData, quantity);
+        Destroy(gameObject);
+        return true;
+    }
 }

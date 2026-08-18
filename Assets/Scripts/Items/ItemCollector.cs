@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// 周辺のアイテムを検出し、収集する
+/// </summary>
 public class ItemCollector : MonoBehaviour
 {
     private List<CollectableItem> itemsInRange = new List<CollectableItem>();
@@ -50,11 +53,12 @@ public class ItemCollector : MonoBehaviour
 
     void TryCollect()
     {
-        if (currentHighlight == null) return;
+        if (currentHighlight == null || InventoryManager.instance == null) return;
 
-        Inventory.instance.AddItem(currentHighlight.itemName, currentHighlight.amount);
-        Destroy(currentHighlight.gameObject);
-        currentHighlight = null;
+        if (currentHighlight.Collect(InventoryManager.instance))
+        {
+            currentHighlight = null;
+        }
     }
 
     void OnTriggerEnter(Collider other)

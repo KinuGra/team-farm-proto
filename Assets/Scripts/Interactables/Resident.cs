@@ -5,13 +5,11 @@ public class Resident: MonoBehaviour
 {
     public float interactDistance = 2.0f;
 
+    [SerializeField] private List<ItemData> tradableItems = new List<ItemData>();
+
     private Transform player;
     private HighlightController highlight;
     private int itemCount;
-    private List<string> tradableItems = new List<string>()
-    {
-        "CookedRice" ,"CookedWakame" 
-    };
 
     void Start()
     {
@@ -46,22 +44,21 @@ public class Resident: MonoBehaviour
     {
         foreach (var item in tradableItems)
         {
-            if (Inventory.instance.GetItemCount(item) > 0)
+            if (item != null && InventoryManager.instance.GetItemCount(item) > 0)
                 return true;
         }
         return false;
     }
 
-    // 未実装: 報酬, 食わせるアイテムの選別, 完了
     void TryTrade()
     {
         foreach (var item in tradableItems)
         {
-            itemCount = Inventory.instance.GetItemCount(item);
-            if (Inventory.instance.UseItem(item, itemCount))
+            if (item == null) continue;
+            itemCount = InventoryManager.instance.GetItemCount(item);
+            if (InventoryManager.instance.UseItem(item, itemCount))
             {
-                
-                Debug.Log(item+"を与えました！");
+                Debug.Log(item.ItemName + "を与えました！");
                 return;
             }
         }
