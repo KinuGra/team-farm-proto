@@ -4975,6 +4975,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Campfire
   interactDistance: 2
+  riceItem: {fileID: 11400000, guid: 5ee79dec26aa67444b04a036f71ad7d7, type: 2}
+  wakameItem: {fileID: 11400000, guid: 837a0f526e6ba6b428e4ed420b3dd1f6, type: 2}
+  cookedRiceItem: {fileID: 11400000, guid: 946ae03a00090824dba9928e45d1f25d, type: 2}
+  cookedWakameItem: {fileID: 11400000, guid: d2f2c45e42b5ba24087c1cb4066d138f, type: 2}
 --- !u!65 &2751149929256544536
 BoxCollider:
   m_ObjectHideFlags: 0

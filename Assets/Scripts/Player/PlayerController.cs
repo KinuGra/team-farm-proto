@@ -64,13 +64,13 @@ public class PlayerController : MonoBehaviour
         {
             if (isMoving)
             {
-                animator.SetBool("isWalking", !isRunning);
-                animator.SetBool("isRunning", isRunning);
+                animator.SetBool("Walk", true);
+                animator.SetBool("Run", isRunning);
             }
             else
             {
-                animator.SetBool("isWalking", false);
-                animator.SetBool("isRunning", false);
+                animator.SetBool("Walk", false);
+                animator.SetBool("Run", false);
             }
         }
     }

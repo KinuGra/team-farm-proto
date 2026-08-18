@@ -80,6 +80,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   interactDistance: 3
+  cookedRiceItem: {fileID: 11400000, guid: 946ae03a00090824dba9928e45d1f25d, type: 2}
+  cookedWakameItem: {fileID: 11400000, guid: d2f2c45e42b5ba24087c1cb4066d138f, type: 2}
+  onigiriItem: {fileID: 11400000, guid: e2cc2addb5029244b95efbd674eb29ec, type: 2}
 --- !u!114 &5758248796887668415
 MonoBehaviour:
   m_ObjectHideFlags: 0

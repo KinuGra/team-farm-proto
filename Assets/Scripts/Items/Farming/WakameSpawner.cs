@@ -6,7 +6,7 @@ public class WakameSpawner : MonoBehaviour
     public int spawnCount = 50;
     public float radius = 30f;
 
-    public float minY = -3f;  // 浅瀬の下限（深さ）
+    public float minY = -5f;  // 浅瀬の下限（深さ）
     public float maxY = 6.46f;   // 水面（0くらい想定）
 
     void Start()
