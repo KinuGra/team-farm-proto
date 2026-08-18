@@ -6,6 +6,8 @@ public class PlantManager : MonoBehaviour
     public float plantHeight = 0.1f;
     public float rayDistance = 10f;
 
+    [SerializeField] private ItemData riceItem;
+
     // 🌟 ハイライト用
     private GameObject currentField;
     private Renderer currentRenderer;
@@ -72,7 +74,10 @@ public class PlantManager : MonoBehaviour
                 {
                     if (crop.IsGrown())
                     {
-                        Inventory.instance.AddItem("Rice");
+                        if (riceItem != null)
+                        {
+                            InventoryManager.instance.AddItem(riceItem);
+                        }
                         Destroy(crop.gameObject);
                         Debug.Log("収穫した！");
                     }

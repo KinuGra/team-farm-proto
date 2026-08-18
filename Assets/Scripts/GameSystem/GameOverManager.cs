@@ -32,7 +32,7 @@ public class GameOverManager : MonoBehaviour
         Debug.Log("=== GAME OVER ===");
 
         // プレイヤーの動きを止める
-        PlayerController player = FindObjectOfType<PlayerController>();
+        PlayerController player = FindAnyObjectByType<PlayerController>();
         if (player != null)
         {
             player.enabled = false;
