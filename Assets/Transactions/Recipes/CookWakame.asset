@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4dbe239ba98cc64380a3bdd50913c7a, type: 3}
+  m_Name: CookWakame
+  m_EditorClassIdentifier: Assembly-CSharp::Transaction
+  id: 2
+  category: 0
+  transactionName: CookedWakame
+  inputs:
+  - itemData: {fileID: 11400000, guid: 837a0f526e6ba6b428e4ed420b3dd1f6, type: 2}
+    quantity: 1
+  outputs: []

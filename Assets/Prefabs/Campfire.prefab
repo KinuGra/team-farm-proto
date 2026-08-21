@@ -4935,7 +4935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1162867844419454352}
-  - component: {fileID: 8455848071697722780}
+  - component: {fileID: -5230757602808975976}
   - component: {fileID: 2751149929256544536}
   - component: {fileID: 7917503128161867016}
   m_Layer: 0
@@ -4962,7 +4962,7 @@ Transform:
   - {fileID: 5810767789306395214}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8455848071697722780
+--- !u!114 &-5230757602808975976
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4971,14 +4971,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4507849375014477890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 719a16907ebf81f4d947568804533214, type: 3}
+  m_Script: {fileID: 11500000, guid: 67525190d4eee274baa9023682dc1a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Campfire
   interactDistance: 2
-  riceItem: {fileID: 11400000, guid: 5ee79dec26aa67444b04a036f71ad7d7, type: 2}
-  wakameItem: {fileID: 11400000, guid: 837a0f526e6ba6b428e4ed420b3dd1f6, type: 2}
-  cookedRiceItem: {fileID: 11400000, guid: 946ae03a00090824dba9928e45d1f25d, type: 2}
-  cookedWakameItem: {fileID: 11400000, guid: d2f2c45e42b5ba24087c1cb4066d138f, type: 2}
+  transactions:
+  - {fileID: 11400000, guid: 7c3f0223056c53a4096d2dc4fe52c1c4, type: 2}
+  - {fileID: 11400000, guid: d45f3fdbc628f08469d235af1a09c1d0, type: 2}
 --- !u!65 &2751149929256544536
 BoxCollider:
   m_ObjectHideFlags: 0

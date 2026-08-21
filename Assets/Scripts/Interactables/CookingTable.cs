@@ -1,11 +1,11 @@
 using UnityEngine;
 
 /// <summary>
-/// 簡単なキャンプファイヤーの例 
+/// 簡単な調理台の例 
 /// レシピを基に調理をして、アイテムを生成する
 /// 調理後にメッセージを表示する
 /// </summary>
-public class Campfire : Workstation
+public class CookingTable : Workstation
 {
     // 調理後の処理
     protected override void OnTransactionExecuted(Transaction transaction)

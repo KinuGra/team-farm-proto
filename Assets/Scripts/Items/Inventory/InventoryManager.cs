@@ -66,6 +66,52 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 複数のアイテムをまとめて追加できるか判定する（実際には追加しない）
+    /// </summary>
+    public bool CanAddItems(ItemData[] itemDatas, int[] quantities)
+    {
+        if (itemDatas == null || quantities == null || itemDatas.Length != quantities.Length)
+            return false;
+
+        List<ItemStack> simulatedItems = new List<ItemStack>();
+        foreach (ItemStack item in items)
+        {
+            simulatedItems.Add(new ItemStack(item.ItemData, item.Quantity));
+        }
+
+        for (int i = 0; i < itemDatas.Length; i++)
+        {
+            ItemData itemData = itemDatas[i];
+            int quantity = quantities[i];
+
+            if (itemData == null || quantity <= 0)
+                return false;
+
+            int remaining = quantity;
+            foreach (ItemStack stack in simulatedItems)
+            {
+                if (stack.ItemData == itemData && !stack.IsFull)
+                {
+                    remaining = stack.AddQuantity(remaining);
+                    if (remaining == 0) break;
+                }
+            }
+
+            while (remaining > 0 && simulatedItems.Count < maxSlots)
+            {
+                int addAmount = Mathf.Min(remaining, itemData.MaxStack);
+                simulatedItems.Add(new ItemStack(itemData, addAmount));
+                remaining -= addAmount;
+            }
+
+            if (remaining > 0)
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
     /// アイテムを追加する。スロット満杯の場合は追加できない分を返す
     /// </summary>
     public int AddItem(ItemData itemData, int quantity = 1)

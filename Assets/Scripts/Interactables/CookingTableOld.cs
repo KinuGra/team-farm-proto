@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CookingTable : MonoBehaviour
+public class CookingTableOld : MonoBehaviour
 {
     public float interactDistance = 2f;
 
