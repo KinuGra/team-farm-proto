@@ -1,0 +1,19 @@
+@startuml
+class CampfireOld {
+    + interactDistance : float = 2f
+    - Start() : void
+    - Update() : void
+    - HasAnyCookableItem() : bool
+    - TryCook() : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+MonoBehaviour <|-- CampfireOld
+CampfireOld --> "riceItem" ItemData
+CampfireOld --> "wakameItem" ItemData
+CampfireOld --> "cookedRiceItem" ItemData
+CampfireOld --> "cookedWakameItem" ItemData
+CampfireOld --> "player" Transform
+CampfireOld --> "highlight" HighlightController
+CampfireOld o-> "recipes" ItemData,ItemData
+@enduml

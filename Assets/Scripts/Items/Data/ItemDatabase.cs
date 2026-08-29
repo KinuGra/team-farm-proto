@@ -114,7 +114,8 @@ public class ItemDatabase : MonoBehaviour
         items.Clear();
         
         // Assets/Scripts/Items/ 配下のすべてのItemDataを検索
-        string[] guids = UnityEditor.AssetDatabase.FindAssets("t:ItemData");
+       
+        List<string> guids = new List<string>(UnityEditor.AssetDatabase.FindAssets("t:ItemData"));
         foreach (string guid in guids)
         {
             string path = UnityEditor.AssetDatabase.GUIDToAssetPath(guid);

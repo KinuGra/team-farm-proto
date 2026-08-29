@@ -1,0 +1,17 @@
+@startuml
+interface IFishingTimeCalculator {
+    Calculate(spotData:FishingSpotData) : float
+}
+class FishingTimeCalculator <<sealed>> {
+    + Calculate(spotData:FishingSpotData) : float
+}
+interface IFishSelector {
+    Select(spotData:FishingSpotData) : FishData
+}
+class WeightedFishSelector <<sealed>> {
+    + Select(spotData:FishingSpotData) : FishData
+    - {static} IsSelectable(localFish:LocalFishData) : bool
+}
+IFishingTimeCalculator <|-- FishingTimeCalculator
+IFishSelector <|-- WeightedFishSelector
+@enduml

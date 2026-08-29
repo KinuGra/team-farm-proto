@@ -4,7 +4,7 @@ using System.Collections.Generic;
 /// <summary>
 /// プレイヤーのインベントリを管理する（シングルトン）
 /// </summary>
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, IItemReceiver
 {
     // シングルトン
     public static InventoryManager instance;
@@ -68,9 +68,9 @@ public class InventoryManager : MonoBehaviour
     /// <summary>
     /// 複数のアイテムをまとめて追加できるか判定する（実際には追加しない）
     /// </summary>
-    public bool CanAddItems(ItemData[] itemDatas, int[] quantities)
+    public bool CanAddItems(List<ItemData> itemDatas, List<int> quantities)
     {
-        if (itemDatas == null || quantities == null || itemDatas.Length != quantities.Length)
+        if (itemDatas == null || quantities == null || itemDatas.Count != quantities.Count)
             return false;
 
         List<ItemStack> simulatedItems = new List<ItemStack>();
@@ -79,7 +79,7 @@ public class InventoryManager : MonoBehaviour
             simulatedItems.Add(new ItemStack(item.ItemData, item.Quantity));
         }
 
-        for (int i = 0; i < itemDatas.Length; i++)
+        for (int i = 0; i < itemDatas.Count; i++)
         {
             ItemData itemData = itemDatas[i];
             int quantity = quantities[i];
@@ -143,6 +143,16 @@ public class InventoryManager : MonoBehaviour
         }
 
         return remaining;  // 追加できなかった分を返す
+    }
+
+    public bool CanReceive(ItemData itemData, int quantity)
+    {
+        return CanAddItem(itemData, quantity);
+    }
+
+    public bool Receive(ItemData itemData, int quantity)
+    {
+        return AddItem(itemData, quantity) == 0;
     }
 
     /// <summary>

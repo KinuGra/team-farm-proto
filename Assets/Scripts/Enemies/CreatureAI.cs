@@ -68,4 +68,10 @@ public class CreatureAI : MonoBehaviour
             if (animator != null) animator.SetBool("isWalking", false);
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, detectRange);
+    }
 }

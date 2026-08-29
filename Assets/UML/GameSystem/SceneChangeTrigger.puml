@@ -1,0 +1,10 @@
+@startuml
+class SceneChangeTrigger {
+    + sceneName : string
+    - isPlayerNear : bool = false
+    - Update() : void
+    - OnTriggerEnter(other:Collider) : void
+    - OnTriggerExit(other:Collider) : void
+}
+MonoBehaviour <|-- SceneChangeTrigger
+@enduml

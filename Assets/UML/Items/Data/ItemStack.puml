@@ -1,0 +1,13 @@
+@startuml
+class ItemStack {
+    - quantity : int
+    + Quantity : int <<get>>
+    + ItemStack(itemData:ItemData, quantity:int)
+    + AddQuantity(amount:int) : int
+    + RemoveQuantity(amount:int) : bool
+    + IsFull : bool <<get>>
+    + IsEmpty : bool <<get>>
+}
+ItemStack --> "itemData" ItemData
+ItemStack --> "ItemData" ItemData
+@enduml

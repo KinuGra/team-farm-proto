@@ -1,0 +1,11 @@
+@startuml
+class CameraFollow_birds_view {
+    + smoothTime : float = 0.2f
+    + lookHeight : float = 3.0f
+    - LateUpdate() : void
+}
+MonoBehaviour <|-- CameraFollow_birds_view
+CameraFollow_birds_view --> "target" Transform
+CameraFollow_birds_view o-> "offset" Vector3
+CameraFollow_birds_view o-> "velocity" Vector3
+@enduml

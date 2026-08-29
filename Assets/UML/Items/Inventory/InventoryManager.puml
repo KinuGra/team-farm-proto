@@ -1,0 +1,28 @@
+@startuml
+class InventoryManager {
+    - maxSlots : int = 5
+    - Awake() : void
+    + CurrentSlots : int <<get>>
+    + MaxSlots : int <<get>>
+    + CanAddItem(itemData:ItemData, quantity:int) : bool
+    + CanAddItems(itemDatas:List<ItemData>, quantities:List<int>) : bool
+    + AddItem(itemData:ItemData, quantity:int) : int
+    + CanReceive(itemData:ItemData, quantity:int) : bool
+    + Receive(itemData:ItemData, quantity:int) : bool
+    + CanRemoveItem(itemData:ItemData, quantity:int) : bool
+    + RemoveItem(itemData:ItemData, quantity:int) : bool
+    + UseItem(itemData:ItemData, quantity:int) : bool
+    + GetItemCount(itemData:ItemData) : int
+    + Clear() : void
+    + SetMaxSlots(newMaxSlots:int) : void
+}
+class "List`1"<T> {
+}
+class "IReadOnlyList`1"<T> {
+}
+MonoBehaviour <|-- InventoryManager
+IItemReceiver <|-- InventoryManager
+InventoryManager --> "instance" InventoryManager
+InventoryManager o-> "items" ItemStack
+InventoryManager o-> "Items" ItemStack
+@enduml

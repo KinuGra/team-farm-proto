@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// 汎用作業台の基底クラス
@@ -8,7 +9,7 @@ using UnityEngine;
 public class Workstation : MonoBehaviour
 {
     [SerializeField] protected float interactDistance = 2f;
-    [SerializeField] protected Transaction[] transactions;
+    [SerializeField] protected List<Transaction> transactions;
 
     protected Transform player;
     protected HighlightController highlight;
@@ -55,7 +56,7 @@ public class Workstation : MonoBehaviour
     /// </summary>
     protected virtual bool HasAnyTransaction()
     {
-        if (transactions == null || transactions.Length == 0)
+        if (transactions == null || transactions.Count == 0)
             return false;
 
         InventoryManager inventory = InventoryManager.instance;

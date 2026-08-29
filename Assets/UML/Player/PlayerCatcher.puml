@@ -1,0 +1,6 @@
+@startuml
+class PlayerCatcher {
+    - OnTriggerEnter(other:Collider) : void
+}
+MonoBehaviour <|-- PlayerCatcher
+@enduml

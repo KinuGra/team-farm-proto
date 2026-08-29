@@ -1,0 +1,34 @@
+@startuml
+class TransactionInput {
+    + quantity : int = 1
+}
+class TransactionOutput {
+    + quantity : int = 1
+}
+enum ItemType {
+    Food,
+    Material,
+    Tool,
+    Trade,
+    Others,
+}
+class Transaction {
+    - id : int
+    - transactionName : string
+    + Id : int <<get>>
+    + TransactionName : string <<get>>
+    + GetResultDescription() : string
+    + CanExecute(inventory:InventoryManager) : bool
+    + Execute(inventory:InventoryManager) : bool
+    - OnValidate() : void
+}
+class "List`1"<T> {
+}
+TransactionInput --> "itemData" ItemData
+TransactionOutput --> "itemData" ItemData
+ScriptableObject <|-- Transaction
+Transaction --> "category" ItemType
+Transaction o-> "outputs" TransactionOutput
+Transaction --> "Category" ItemType
+Transaction o-> "Outputs" TransactionOutput
+@enduml

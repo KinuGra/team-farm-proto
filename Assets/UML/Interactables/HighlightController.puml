@@ -1,0 +1,8 @@
+@startuml
+class HighlightController {
+    - Start() : void
+    + SetHighlight(on:bool) : void
+}
+MonoBehaviour <|-- HighlightController
+HighlightController o-> "highlightColor" Color
+@enduml

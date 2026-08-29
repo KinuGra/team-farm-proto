@@ -1,0 +1,15 @@
+@startuml
+class Crop {
+    + growTime : float = 5f
+    - timer : float = 0f
+    - stage : int = 0
+    - Start() : void
+    - Update() : void
+    - UpdateStage() : void
+    + IsGrown() : bool
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- Crop
+Crop o-> "growthStages" GameObject
+@enduml

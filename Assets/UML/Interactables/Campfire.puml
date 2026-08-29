@@ -1,0 +1,7 @@
+@startuml
+class Campfire {
+    # <<override>> OnTransactionExecuted(transaction:Transaction) : void
+    # <<override>> OnTransactionUnavailable() : void
+}
+Workstation <|-- Campfire
+@enduml

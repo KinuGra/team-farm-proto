@@ -1,0 +1,19 @@
+@startuml
+class PlantManager {
+    + plantHeight : float = 0.1f
+    + rayDistance : float = 10f
+    - Update() : void
+    - TryPlant() : void
+    - TryHarvest() : void
+    - HighlightField() : void
+    - ResetHighlight() : void
+}
+MonoBehaviour <|-- PlantManager
+PlantManager --> "cropPrefab" GameObject
+PlantManager --> "riceItem" ItemData
+PlantManager --> "currentField" GameObject
+PlantManager --> "currentRenderer" Renderer
+PlantManager --> "originalColor" Color
+PlantManager o-> "canPlantColor" Color
+PlantManager o-> "cannotPlantColor" Color
+@enduml

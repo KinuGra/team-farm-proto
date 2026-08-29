@@ -1,8 +1,9 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// Workstation の具体例
-/// Inspector で Transaction[] を設定するだけで動作する汎用作業台
+/// Inspector で List<Transaction> を設定するだけで動作する汎用作業台
 /// 
 /// 例：
 /// - 調理台：Rice → CookedRice のトランザクション、Wakame → CookedWakame のトランザクションなど

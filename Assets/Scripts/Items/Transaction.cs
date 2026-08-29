@@ -38,14 +38,14 @@ public class Transaction : ScriptableObject
     [SerializeField] private int id;
     [SerializeField] private ItemType category;
     [SerializeField] private string transactionName;
-    [SerializeField] private TransactionInput[] inputs;
-    [SerializeField] private TransactionOutput[] outputs;
+    [SerializeField] private List<TransactionInput> inputs;
+    [SerializeField] private List<TransactionOutput> outputs;
 
     public int Id => id;
     public ItemType Category => category;
     public string TransactionName => transactionName;
-    public TransactionInput[] Inputs => inputs;
-    public TransactionOutput[] Outputs => outputs;
+    public List<TransactionInput> Inputs => inputs;
+    public List<TransactionOutput> Outputs => outputs;
 
     /// <summary>
     /// トランザクションの消費内容と獲得内容を表示用に取得
@@ -74,7 +74,7 @@ public class Transaction : ScriptableObject
     /// </summary>
     public bool CanExecute(InventoryManager inventory)
     {
-        if (inventory == null || inputs == null || inputs.Length == 0 || outputs == null || outputs.Length == 0)
+        if (inventory == null || inputs == null || inputs.Count == 0 || outputs == null || outputs.Count == 0)
             return false;
 
         // すべての入力アイテムが揃っているか確認
@@ -88,9 +88,9 @@ public class Transaction : ScriptableObject
                 return false;
         }
 
-        ItemData[] outputItems = new ItemData[outputs.Length];
-        int[] outputQuantities = new int[outputs.Length];
-        for (int i = 0; i < outputs.Length; i++)
+        List<ItemData> outputItems = new List<ItemData>(outputs.Count);
+        List<int> outputQuantities = new List<int>(outputs.Count);
+        for (int i = 0; i < outputs.Count; i++)
         {
             if (outputs[i] == null || outputs[i].itemData == null || outputs[i].quantity <= 0)
                 return false;

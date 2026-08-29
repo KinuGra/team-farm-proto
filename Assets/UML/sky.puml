@@ -1,0 +1,14 @@
+@startuml
+class SkyboxSmoothChanger {
+    + totalTimePerSkybox : float = 300f
+    + fadeTime : float = 10f
+    - index : int = 0
+    - Start() : void
+    - SkyboxLoop() : IEnumerator
+    - FadeExposure(from:float, to:float) : IEnumerator
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- SkyboxSmoothChanger
+SkyboxSmoothChanger o-> "skyboxes" Material
+@enduml

@@ -27,6 +27,14 @@ public class PlayerController : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
         isRunning = Input.GetKey(KeyCode.LeftShift);
+
+        // 現状釣りのみ、キー入力を後でまとめる。
+        if (Input.GetKeyDown(KeyCode.F))
+        {   
+            if(FishingManager.instance != null)
+                FishingManager.instance.TryStartFishing();
+        }
+
         // テスト用: Pキーでおにぎり取得
         if (Input.GetKeyDown(KeyCode.P))
         {

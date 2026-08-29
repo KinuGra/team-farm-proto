@@ -1,0 +1,11 @@
+@startuml
+interface IItemReceiver {
+    CanReceive(itemData:ItemData, quantity:int) : bool
+    Receive(itemData:ItemData, quantity:int) : bool
+}
+class FishingRewardDistributor <<sealed>> {
+    + FishingRewardDistributor(receiver:IItemReceiver)
+    + Distribute(fishData:FishData, quantity:int) : bool
+}
+FishingRewardDistributor --> "receiver" IItemReceiver
+@enduml

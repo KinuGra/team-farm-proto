@@ -1,0 +1,16 @@
+@startuml
+class FishData {
+    - fishId : int
+    - fishName : string
+    - description : string
+    - weight : int
+    + FishId : int <<get>>
+    + FishName : string <<get>>
+    + Description : string <<get>>
+    + Weight : int <<get>>
+    - OnValidate() : void
+}
+ScriptableObject <|-- FishData
+FishData --> "item" ItemData
+FishData --> "Item" ItemData
+@enduml

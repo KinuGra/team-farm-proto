@@ -1,0 +1,14 @@
+@startuml
+class CreatureAI {
+    + moveSpeed : float = 3f
+    + detectRange : float = 20f
+    + attackRange : float = 1.5f
+    + rotationSpeed : float = 5f
+    - Start() : void
+    - FixedUpdate() : void
+}
+MonoBehaviour <|-- CreatureAI
+CreatureAI --> "player" Transform
+CreatureAI --> "animator" Animator
+CreatureAI --> "rb" Rigidbody
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+class InventoryUI {
+    - isOpen : bool = false
+    - Start() : void
+    - Update() : void
+    - UpdateDisplay() : void
+}
+MonoBehaviour <|-- InventoryUI
+InventoryUI --> "displayText" TextMeshProUGUI
+InventoryUI o-> "toggleKey" KeyCode
+@enduml

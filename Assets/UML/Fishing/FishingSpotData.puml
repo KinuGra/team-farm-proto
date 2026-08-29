@@ -1,0 +1,21 @@
+@startuml
+class LocalFishData {
+    + catchRate : int = 100
+    + spawnWeight : int = 1
+}
+class FishingSpotData {
+    - spotid : int
+    - spotName : string
+    - fishingTimeMean : float = 5f
+    - fishingTimeVariance : float = 2f
+    + SpotId : int <<get>>
+    + SpotName : string <<get>>
+    + FishingTimeMean : float <<get>>
+    + FishingTimeVariance : float <<get>>
+    - OnValidate() : void
+}
+LocalFishData --> "fishData" FishData
+ScriptableObject <|-- FishingSpotData
+FishingSpotData --> "direction" Vector3
+FishingSpotData --> "Direction" Vector3
+@enduml

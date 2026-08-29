@@ -1,0 +1,11 @@
+@startuml
+class WakameSpawner {
+    + spawnCount : int = 50
+    + radius : float = 30f
+    + minY : float
+    + maxY : float = 6.46f
+    - Start() : void
+}
+MonoBehaviour <|-- WakameSpawner
+WakameSpawner --> "wakamePrefab" GameObject
+@enduml

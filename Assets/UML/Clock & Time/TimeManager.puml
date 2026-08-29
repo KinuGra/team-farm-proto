@@ -1,0 +1,12 @@
+@startuml
+class TimeManager {
+    + dayLength : float = 1200f
+    - currentTime : float = 0f
+    - Awake() : void
+    - Update() : void
+    + GetTimeRate() : float
+    + GetTimeText() : string
+}
+MonoBehaviour <|-- TimeManager
+TimeManager --> "instance" TimeManager
+@enduml

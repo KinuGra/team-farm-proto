@@ -1,0 +1,6 @@
+@startuml
+class StartGame {
+    + StartButton() : void
+}
+MonoBehaviour <|-- StartGame
+@enduml

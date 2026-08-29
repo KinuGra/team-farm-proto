@@ -1,0 +1,14 @@
+@startuml
+class ItemCollector {
+    - Update() : void
+    - UpdateHighlight() : void
+    - TryCollect() : void
+    - OnTriggerEnter(other:Collider) : void
+    - OnTriggerExit(other:Collider) : void
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- ItemCollector
+ItemCollector o-> "itemsInRange" CollectableItem
+ItemCollector --> "currentHighlight" CollectableItem
+@enduml
