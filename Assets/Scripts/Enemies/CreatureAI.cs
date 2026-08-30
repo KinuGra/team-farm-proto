@@ -42,6 +42,8 @@ public class CreatureAI : MonoBehaviour
 
         if (distance <= attackRange)
         {
+            // プレイヤーに接触した場合、ゲームオーバー処理を呼び出す
+            // ゲームオーバーのアニメーションは随時
             if (animator != null) animator.SetBool("isWalking", false);
             GameOverManager.instance.GameOver();
         }

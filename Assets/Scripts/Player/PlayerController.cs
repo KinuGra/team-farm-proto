@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
         // テスト用: Pキーでおにぎり取得
         if (Input.GetKeyDown(KeyCode.P))
         {
+            Debug.Log(GameOverManager.instance.isGameOverEnabled);
             if (onigiriItem != null)
             {
                 InventoryManager.instance.AddItem(onigiriItem);
@@ -81,6 +82,15 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Run", false);
             }
         }
+    }
+
+    /// <summary>
+    /// プレイヤーの操作を有効/無効にする
+    /// ✡いつか書く
+    /// </summary>
+    public void SetControlActive(bool active)
+    {
+        Debug.Log("操作停止");
     }
     
 }
