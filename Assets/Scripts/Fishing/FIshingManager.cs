@@ -52,6 +52,7 @@ public class FishingManager : MonoBehaviour
 
     private IEnumerator WaitForFish(FishingSpot spot)
     {
+        // ✡釣りを途中で抜け出した場合の処理はいつかやる
         float waitTime = fishingTimeCalculator.Calculate(spot.SpotData);
         yield return new WaitForSeconds(waitTime);
 

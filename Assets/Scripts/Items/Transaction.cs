@@ -33,7 +33,6 @@ public enum ItemType
 /// </summary>
 [CreateAssetMenu(menuName = "Items/Transaction")]
 public class Transaction : ScriptableObject
-
 {
     [SerializeField] private int id;
     [SerializeField] private ItemType category;
@@ -88,15 +87,15 @@ public class Transaction : ScriptableObject
                 return false;
         }
 
-        List<ItemData> outputItems = new List<ItemData>(outputs.Count);
-        List<int> outputQuantities = new List<int>(outputs.Count);
+        List<ItemData> outputItems = new List<ItemData>();
+        List<int> outputQuantities = new List<int>();
         for (int i = 0; i < outputs.Count; i++)
         {
             if (outputs[i] == null || outputs[i].itemData == null || outputs[i].quantity <= 0)
                 return false;
 
-            outputItems[i] = outputs[i].itemData;
-            outputQuantities[i] = outputs[i].quantity;
+            outputItems.Add(outputs[i].itemData);
+            outputQuantities.Add(outputs[i].quantity);
         }
 
         // 全出力をまとめて追加できるか確認
@@ -126,24 +125,24 @@ public class Transaction : ScriptableObject
         return true;
     }
 
-    private void OnValidate() {
-    if (inputs == null)
-        return;
-
-    foreach (var input in inputs)
+    private void OnValidate()
     {
-        if (input != null && input.quantity < 1)
-            input.quantity = 1;
-    }
+        if (inputs == null)
+            return;
 
-    if (outputs == null)
-        return;
+        foreach (var input in inputs)
+        {
+            if (input != null && input.quantity < 1)
+                input.quantity = 1;
+        }
 
-    foreach (var output in outputs)
-    {
-        if (output != null && output.quantity < 1)
-            output.quantity = 1;
-    }
+        if (outputs == null)
+            return;
+
+        foreach (var output in outputs)
+        {
+            if (output != null && output.quantity < 1)
+                output.quantity = 1;
+        }
     }
 }
-

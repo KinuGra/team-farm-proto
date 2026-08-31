@@ -29,7 +29,18 @@ public class CollectableItem : MonoBehaviour
 
         // 全て追加できる場合のみ追加してオブジェクト削除
         inventory.AddItem(itemData, quantity);
+
+        OnCollected();
         Destroy(gameObject);
         return true;
     }
+
+    /// <summary>
+    /// 収集時の特殊処理
+    /// </summary>
+    protected virtual void OnCollected()
+    {
+        
+    }
+
 }

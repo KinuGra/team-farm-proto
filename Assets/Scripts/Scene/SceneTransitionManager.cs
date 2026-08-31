@@ -47,6 +47,10 @@ public class DefaultSceneLoader : ISceneLoader
 {
     public IEnumerator LoadSceneAsync(string sceneName)
     {
+        if (DynamicObjectManager.Instance != null)
+        {
+            DynamicObjectManager.Instance.SaveCurrentSceneObjects();
+        }
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         while (!asyncLoad.isDone)
         {

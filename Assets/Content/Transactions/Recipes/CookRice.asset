@@ -18,4 +18,6 @@ MonoBehaviour:
   inputs:
   - itemData: {fileID: 11400000, guid: 5ee79dec26aa67444b04a036f71ad7d7, type: 2}
     quantity: 1
-  outputs: []
+  outputs:
+  - itemData: {fileID: 11400000, guid: 946ae03a00090824dba9928e45d1f25d, type: 2}
+    quantity: 1
