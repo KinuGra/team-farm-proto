@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: 0
   itemName: Money
-  description: "\u4EEE\u306E\u30C7\u30FC\u30BF"
+  description: "\u304A\u91D1\uFF08\u6D88\u3059\uFF09"
   maxStack: 9999
   value: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: fa1542ce4837f93428c05e13cb30aa36, type: 3}
+  model: {fileID: 8343161730926428560, guid: 3725928d4843d7d48b62118a7cb25ae1, type: 3}

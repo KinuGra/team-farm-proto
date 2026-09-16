@@ -17,9 +17,6 @@ MonoBehaviour:
   localFish:
   - fishData: {fileID: 11400000, guid: 3931f2a964b2e594094181c5d0e0d2f4, type: 2}
     catchRate: 100
-    spawnWeight: 4
-  - fishData: {fileID: 11400000, guid: 3931f2a964b2e594094181c5d0e0d2f4, type: 2}
-    catchRate: 100
     spawnWeight: 1
   - fishData: {fileID: 11400000, guid: 9d16b0a842a165b4f8bd4b275e0934b2, type: 2}
     catchRate: 100
@@ -31,5 +28,5 @@ MonoBehaviour:
     catchRate: 1
     spawnWeight: 1
   fishingTimeMean: 5
-  fishingTimeVariance: 10
-  direction: {x: 0, y: 0, z: 0}
+  fishingTimeVariance: 2
+  direction: {x: 1, y: 0, z: 0}

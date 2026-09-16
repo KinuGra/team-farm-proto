@@ -17,4 +17,5 @@ MonoBehaviour:
   description: 
   maxStack: 99
   value: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 38e3d086d6235ef488d4fbeabdf2fd29, type: 3}
+  model: {fileID: 0}

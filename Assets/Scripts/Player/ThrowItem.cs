@@ -15,7 +15,7 @@ public class throwItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         if (Input.GetKeyDown(KeyCode.F))
+         if (Input.GetKeyDown(KeyCode.Q))
         {   
             if(InventoryManager.instance != null && throwItemData != null && throwItemPrefab != null)
             {
