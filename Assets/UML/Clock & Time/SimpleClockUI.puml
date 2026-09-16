@@ -1,0 +1,7 @@
+@startuml
+class SimpleClockUI {
+    - Update() : void
+}
+MonoBehaviour <|-- SimpleClockUI
+SimpleClockUI --> "hand" RectTransform
+@enduml

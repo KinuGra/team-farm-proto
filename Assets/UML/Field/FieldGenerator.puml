@@ -1,0 +1,8 @@
+@startuml
+class FieldGenerator {
+    + size : int = 5
+    - Start() : void
+}
+MonoBehaviour <|-- FieldGenerator
+FieldGenerator --> "tilePrefab" GameObject
+@enduml

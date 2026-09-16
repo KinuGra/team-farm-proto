@@ -1,0 +1,9 @@
+@startuml
+class FishingSpot {
+    - OnTriggerEnter(other:Collider) : void
+    - OnTriggerExit(other:Collider) : void
+}
+MonoBehaviour <|-- FishingSpot
+FishingSpot --> "spotData" FishingSpotData
+FishingSpot --> "SpotData" FishingSpotData
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class preCameraFollow {
+    + smoothSpeed : float = 5f
+    - LateUpdate() : void
+}
+MonoBehaviour <|-- preCameraFollow
+preCameraFollow --> "target" Transform
+preCameraFollow o-> "offset" Vector3
+@enduml

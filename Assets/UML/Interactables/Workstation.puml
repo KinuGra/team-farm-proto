@@ -1,0 +1,18 @@
+@startuml
+class Workstation {
+    # interactDistance : float = 2f
+    # <<virtual>> Start() : void
+    # <<virtual>> Update() : void
+    # <<virtual>> HasAnyTransaction() : bool
+    # <<virtual>> TryExecuteAnyTransaction() : void
+    # <<virtual>> OnTransactionExecuted(transaction:Transaction) : void
+    # <<virtual>> OnTransactionFailed(transaction:Transaction) : void
+    # <<virtual>> OnTransactionUnavailable() : void
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- Workstation
+Workstation o-> "transactions" Transaction
+Workstation --> "player" Transform
+Workstation --> "highlight" HighlightController
+@enduml

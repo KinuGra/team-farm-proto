@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FieldGenerator
   tilePrefab: {fileID: 3186229622363875213, guid: 53bcaf49433d62645b6ef264d99d564e, type: 3}
+  framePrefab: {fileID: 4013666223312530161, guid: 850c15f1b322a584e9adc509f77706dc, type: 3}
   size: 5

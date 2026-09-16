@@ -80,10 +80,10 @@ PrefabInstance:
       addedObject: {fileID: -1492294283278954168}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 164961955789548103}
+      addedObject: {fileID: -6602034904318974031}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -6602034904318974031}
+      addedObject: {fileID: 2595980967593270464}
     - targetCorrespondingSourceObject: {fileID: 6868068207862487623, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8185743794257000754}
@@ -136,20 +136,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 2.561061, z: 1}
   m_Center: {x: 0, y: 0.5094948, z: 0}
---- !u!114 &164961955789548103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417236281344537869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15dbe0d4f4804864b91fc7e0576d8add, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CollectableItem
-  itemData: {fileID: 11400000, guid: 837a0f526e6ba6b428e4ed420b3dd1f6, type: 2}
-  quantity: 1
 --- !u!114 &-6602034904318974031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +149,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HighlightController
   highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+--- !u!114 &2595980967593270464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417236281344537869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 951b0e80543167849b4ae1601835fa71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectWakame
+  itemData: {fileID: 11400000, guid: 837a0f526e6ba6b428e4ed420b3dd1f6, type: 2}
+  quantity: 1
 --- !u!1 &6222704042208072219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6868068207862487623, guid: 87edf80c38e81d74299bdecc8efca98a, type: 3}

@@ -1,0 +1,18 @@
+@startuml
+class ItemData {
+    - itemId : int
+    - itemName : string
+    - description : string
+    - maxStack : int = 99
+    - value : int = 0
+    + ItemId : int <<get>>
+    + ItemName : string <<get>>
+    + Description : string <<get>>
+    + MaxStack : int <<get>>
+    + Value : int <<get>>
+    - OnValidate() : void
+}
+ScriptableObject <|-- ItemData
+ItemData --> "icon" Sprite
+ItemData --> "Icon" Sprite
+@enduml

@@ -1,0 +1,474 @@
+@startuml
+class SkyboxSmoothChanger {
+    + totalTimePerSkybox : float = 300f
+    + fadeTime : float = 10f
+    - index : int = 0
+    - Start() : void
+    - SkyboxLoop() : IEnumerator
+    - FadeExposure(from:float, to:float) : IEnumerator
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- SkyboxSmoothChanger
+SkyboxSmoothChanger o-> "skyboxes" Material
+class CameraFollow {
+    + distance : float = 1.0f
+    + height : float = 1.5f
+    + smoothTime : float = 0.1f
+    + lookDistance : float = 1.0f
+    + lookHeight : float = 0.5f
+    - LateUpdate() : void
+}
+MonoBehaviour <|-- CameraFollow
+CameraFollow --> "target" Transform
+CameraFollow o-> "velocity" Vector3
+class CameraFollow_birds_view {
+    + smoothTime : float = 0.2f
+    + lookHeight : float = 3.0f
+    - LateUpdate() : void
+}
+MonoBehaviour <|-- CameraFollow_birds_view
+CameraFollow_birds_view --> "target" Transform
+CameraFollow_birds_view o-> "offset" Vector3
+CameraFollow_birds_view o-> "velocity" Vector3
+class preCameraFollow {
+    + smoothSpeed : float = 5f
+    - LateUpdate() : void
+}
+MonoBehaviour <|-- preCameraFollow
+preCameraFollow --> "target" Transform
+preCameraFollow o-> "offset" Vector3
+class SimpleClockUI {
+    - Update() : void
+}
+MonoBehaviour <|-- SimpleClockUI
+SimpleClockUI --> "hand" RectTransform
+class TimeManager {
+    + dayLength : float = 1200f
+    - currentTime : float = 0f
+    - Awake() : void
+    - Update() : void
+    + GetTimeRate() : float
+    + GetTimeText() : string
+}
+MonoBehaviour <|-- TimeManager
+TimeManager --> "instance" TimeManager
+class CreatureAI {
+    + moveSpeed : float = 3f
+    + detectRange : float = 20f
+    + attackRange : float = 1.5f
+    + rotationSpeed : float = 5f
+    - Start() : void
+    - FixedUpdate() : void
+}
+MonoBehaviour <|-- CreatureAI
+CreatureAI --> "player" Transform
+CreatureAI --> "animator" Animator
+CreatureAI --> "rb" Rigidbody
+class FieldGenerator {
+    + size : int = 5
+    - Start() : void
+}
+MonoBehaviour <|-- FieldGenerator
+FieldGenerator --> "tilePrefab" GameObject
+class FishData {
+    - fishId : int
+    - fishName : string
+    - description : string
+    - weight : int
+    + FishId : int <<get>>
+    + FishName : string <<get>>
+    + Description : string <<get>>
+    + Weight : int <<get>>
+    - OnValidate() : void
+}
+ScriptableObject <|-- FishData
+FishData --> "item" ItemData
+FishData --> "Item" ItemData
+interface IFishingTimeCalculator {
+    Calculate(spotData:FishingSpotData) : float
+}
+class FishingTimeCalculator <<sealed>> {
+    + Calculate(spotData:FishingSpotData) : float
+}
+interface IFishSelector {
+    Select(spotData:FishingSpotData) : FishData
+}
+class WeightedFishSelector <<sealed>> {
+    + Select(spotData:FishingSpotData) : FishData
+    - {static} IsSelectable(localFish:LocalFishData) : bool
+}
+IFishingTimeCalculator <|-- FishingTimeCalculator
+IFishSelector <|-- WeightedFishSelector
+class FishingManager {
+    - isFishing : bool = false
+    - Awake() : void
+    + SetCurrentSpot(spot:FishingSpot) : void
+    + ClearCurrentSpot(spot:FishingSpot) : void
+    + TryStartFishing() : void
+    - StartFishing(spot:FishingSpot) : void
+    - WaitForFish(spot:FishingSpot) : IEnumerator
+    - EndFish(spot:FishingSpot) : void
+}
+MonoBehaviour <|-- FishingManager
+FishingManager --> "instance" FishingManager
+FishingManager --> "currentSpot" FishingSpot
+FishingManager o-> "fishSelector" IFishSelector
+FishingManager o-> "fishingTimeCalculator" IFishingTimeCalculator
+interface IItemReceiver {
+    CanReceive(itemData:ItemData, quantity:int) : bool
+    Receive(itemData:ItemData, quantity:int) : bool
+}
+class FishingRewardDistributor <<sealed>> {
+    + FishingRewardDistributor(receiver:IItemReceiver)
+    + Distribute(fishData:FishData, quantity:int) : bool
+}
+FishingRewardDistributor --> "receiver" IItemReceiver
+class FishingSpot {
+    - OnTriggerEnter(other:Collider) : void
+    - OnTriggerExit(other:Collider) : void
+}
+MonoBehaviour <|-- FishingSpot
+FishingSpot --> "spotData" FishingSpotData
+FishingSpot --> "SpotData" FishingSpotData
+class LocalFishData {
+    + catchRate : int = 100
+    + spawnWeight : int = 1
+}
+class FishingSpotData {
+    - spotid : int
+    - spotName : string
+    - fishingTimeMean : float = 5f
+    - fishingTimeVariance : float = 2f
+    + SpotId : int <<get>>
+    + SpotName : string <<get>>
+    + FishingTimeMean : float <<get>>
+    + FishingTimeVariance : float <<get>>
+    - OnValidate() : void
+}
+LocalFishData --> "fishData" FishData
+ScriptableObject <|-- FishingSpotData
+FishingSpotData --> "direction" Vector3
+FishingSpotData --> "Direction" Vector3
+class GameOverManager {
+    - isGameOver : bool = false
+    - Awake() : void
+    + IsGameOver() : bool
+    + GameOver() : void
+    - RestartScene() : void
+}
+MonoBehaviour <|-- GameOverManager
+GameOverManager --> "instance" GameOverManager
+class SceneChangeTrigger {
+    + sceneName : string
+    - isPlayerNear : bool = false
+    - Update() : void
+    - OnTriggerEnter(other:Collider) : void
+    - OnTriggerExit(other:Collider) : void
+}
+MonoBehaviour <|-- SceneChangeTrigger
+class StartGame {
+    + StartButton() : void
+}
+MonoBehaviour <|-- StartGame
+class Campfire {
+    # <<override>> OnTransactionExecuted(transaction:Transaction) : void
+    # <<override>> OnTransactionUnavailable() : void
+}
+Workstation <|-- Campfire
+class CampfireOld {
+    + interactDistance : float = 2f
+    - Start() : void
+    - Update() : void
+    - HasAnyCookableItem() : bool
+    - TryCook() : void
+}
+class "Dictionary`2"<T1,T2> {
+}
+MonoBehaviour <|-- CampfireOld
+CampfireOld --> "riceItem" ItemData
+CampfireOld --> "wakameItem" ItemData
+CampfireOld --> "cookedRiceItem" ItemData
+CampfireOld --> "cookedWakameItem" ItemData
+CampfireOld --> "player" Transform
+CampfireOld --> "highlight" HighlightController
+CampfireOld o-> "recipes" ItemData,ItemData
+class CookingTable {
+    # <<override>> OnTransactionExecuted(transaction:Transaction) : void
+    # <<override>> OnTransactionUnavailable() : void
+}
+Workstation <|-- CookingTable
+class CookingTableOld {
+    + interactDistance : float = 2f
+    - Start() : void
+    - Update() : void
+    - TryCraft() : void
+}
+MonoBehaviour <|-- CookingTableOld
+CookingTableOld --> "cookedRiceItem" ItemData
+CookingTableOld --> "cookedWakameItem" ItemData
+CookingTableOld --> "onigiriItem" ItemData
+CookingTableOld --> "player" Transform
+CookingTableOld --> "highlight" HighlightController
+class HighlightController {
+    - Start() : void
+    + SetHighlight(on:bool) : void
+}
+MonoBehaviour <|-- HighlightController
+HighlightController o-> "highlightColor" Color
+class Resident {
+    # <<override>> OnTransactionExecuted(transaction:Transaction) : void
+    # <<override>> OnTransactionUnavailable() : void
+}
+Workstation <|-- Resident
+class ResidentOld {
+    + interactDistance : float = 2.0f
+    - itemCount : int
+    - Start() : void
+    - Update() : void
+    - HasAnyTradableItem() : bool
+    - TryTrade() : void
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- ResidentOld
+ResidentOld o-> "tradableItems" ItemData
+ResidentOld --> "player" Transform
+ResidentOld --> "highlight" HighlightController
+class SimpleWorkstation {
+}
+Workstation <|-- SimpleWorkstation
+class Workstation {
+    # interactDistance : float = 2f
+    # <<virtual>> Start() : void
+    # <<virtual>> Update() : void
+    # <<virtual>> HasAnyTransaction() : bool
+    # <<virtual>> TryExecuteAnyTransaction() : void
+    # <<virtual>> OnTransactionExecuted(transaction:Transaction) : void
+    # <<virtual>> OnTransactionFailed(transaction:Transaction) : void
+    # <<virtual>> OnTransactionUnavailable() : void
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- Workstation
+Workstation o-> "transactions" Transaction
+Workstation --> "player" Transform
+Workstation --> "highlight" HighlightController
+class TransactionInput {
+    + quantity : int = 1
+}
+class TransactionOutput {
+    + quantity : int = 1
+}
+enum ItemType {
+    Food,
+    Material,
+    Tool,
+    Trade,
+    Others,
+}
+class Transaction {
+    - id : int
+    - transactionName : string
+    + Id : int <<get>>
+    + TransactionName : string <<get>>
+    + GetResultDescription() : string
+    + CanExecute(inventory:InventoryManager) : bool
+    + Execute(inventory:InventoryManager) : bool
+    - OnValidate() : void
+}
+class "List`1"<T> {
+}
+TransactionInput --> "itemData" ItemData
+TransactionOutput --> "itemData" ItemData
+ScriptableObject <|-- Transaction
+Transaction --> "category" ItemType
+Transaction o-> "outputs" TransactionOutput
+Transaction --> "Category" ItemType
+Transaction o-> "Outputs" TransactionOutput
+class PlantManager {
+    + plantHeight : float = 0.1f
+    + rayDistance : float = 10f
+    - Update() : void
+    - TryPlant() : void
+    - TryHarvest() : void
+    - HighlightField() : void
+    - ResetHighlight() : void
+}
+MonoBehaviour <|-- PlantManager
+PlantManager --> "cropPrefab" GameObject
+PlantManager --> "riceItem" ItemData
+PlantManager --> "currentField" GameObject
+PlantManager --> "currentRenderer" Renderer
+PlantManager --> "originalColor" Color
+PlantManager o-> "canPlantColor" Color
+PlantManager o-> "cannotPlantColor" Color
+class PlayerCatcher {
+    - OnTriggerEnter(other:Collider) : void
+}
+MonoBehaviour <|-- PlayerCatcher
+class PlayerController {
+    + walkSpeed : float = 5.0f
+    + runSpeed : float = 9.0f
+    + angularVelocity : float = 3.0f
+    - speed : float
+    - x : float
+    - z : float
+    - isRunning : bool = false
+    - Start() : void
+    - Update() : void
+    - FixedUpdate() : void
+}
+MonoBehaviour <|-- PlayerController
+PlayerController --> "rb" Rigidbody
+PlayerController --> "tf" Transform
+PlayerController --> "animator" Animator
+PlayerController --> "onigiriItem" ItemData
+class ItemData {
+    - itemId : int
+    - itemName : string
+    - description : string
+    - maxStack : int = 99
+    - value : int = 0
+    + ItemId : int <<get>>
+    + ItemName : string <<get>>
+    + Description : string <<get>>
+    + MaxStack : int <<get>>
+    + Value : int <<get>>
+    - OnValidate() : void
+}
+ScriptableObject <|-- ItemData
+ItemData --> "icon" Sprite
+ItemData --> "Icon" Sprite
+class ItemDatabase {
+    - Awake() : void
+    - InitializeDatabase() : void
+    + GetItemById(id:int) : ItemData
+    + GetItemByName(name:string) : ItemData
+    + GetAllItems() : IReadOnlyList<ItemData>
+    + ItemCount : int <<get>>
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+MonoBehaviour <|-- ItemDatabase
+ItemDatabase --> "instance" ItemDatabase
+ItemDatabase o-> "items" ItemData
+ItemDatabase o-> "itemsById" int,ItemData
+ItemDatabase o-> "itemsByName" string,ItemData
+class ItemStack {
+    - quantity : int
+    + Quantity : int <<get>>
+    + ItemStack(itemData:ItemData, quantity:int)
+    + AddQuantity(amount:int) : int
+    + RemoveQuantity(amount:int) : bool
+    + IsFull : bool <<get>>
+    + IsEmpty : bool <<get>>
+}
+ItemStack --> "itemData" ItemData
+ItemStack --> "ItemData" ItemData
+class CollectableItem {
+    - quantity : int = 1
+    + Quantity : int <<get>>
+    - OnValidate() : void
+    + Collect(inventory:InventoryManager) : bool
+}
+MonoBehaviour <|-- CollectableItem
+CollectableItem --> "itemData" ItemData
+CollectableItem --> "ItemData" ItemData
+class Crop {
+    + growTime : float = 5f
+    - timer : float = 0f
+    - stage : int = 0
+    - Start() : void
+    - Update() : void
+    - UpdateStage() : void
+    + IsGrown() : bool
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- Crop
+Crop o-> "growthStages" GameObject
+class SoilScript {
+    - playerNear : bool = false
+    - state : int = 0
+    - Update() : void
+    - Plant() : void
+    - OnTriggerEnter(other:Collider) : void
+    - OnTriggerExit(other:Collider) : void
+}
+MonoBehaviour <|-- SoilScript
+SoilScript --> "cropPrefab" GameObject
+SoilScript --> "currentCrop" GameObject
+class WakameSpawner {
+    + spawnCount : int = 50
+    + radius : float = 30f
+    + minY : float
+    + maxY : float = 6.46f
+    - Start() : void
+}
+MonoBehaviour <|-- WakameSpawner
+WakameSpawner --> "wakamePrefab" GameObject
+class InventoryManager {
+    - maxSlots : int = 5
+    - Awake() : void
+    + CurrentSlots : int <<get>>
+    + MaxSlots : int <<get>>
+    + CanAddItem(itemData:ItemData, quantity:int) : bool
+    + CanAddItems(itemDatas:List<ItemData>, quantities:List<int>) : bool
+    + AddItem(itemData:ItemData, quantity:int) : int
+    + CanReceive(itemData:ItemData, quantity:int) : bool
+    + Receive(itemData:ItemData, quantity:int) : bool
+    + CanRemoveItem(itemData:ItemData, quantity:int) : bool
+    + RemoveItem(itemData:ItemData, quantity:int) : bool
+    + UseItem(itemData:ItemData, quantity:int) : bool
+    + GetItemCount(itemData:ItemData) : int
+    + Clear() : void
+    + SetMaxSlots(newMaxSlots:int) : void
+}
+class "List`1"<T> {
+}
+class "IReadOnlyList`1"<T> {
+}
+MonoBehaviour <|-- InventoryManager
+IItemReceiver <|-- InventoryManager
+InventoryManager --> "instance" InventoryManager
+InventoryManager o-> "items" ItemStack
+InventoryManager o-> "Items" ItemStack
+class InventoryUI {
+    - isOpen : bool = false
+    - Start() : void
+    - Update() : void
+    - UpdateDisplay() : void
+}
+MonoBehaviour <|-- InventoryUI
+InventoryUI --> "displayText" TextMeshProUGUI
+InventoryUI o-> "toggleKey" KeyCode
+class ItemCollector {
+    - Update() : void
+    - UpdateHighlight() : void
+    - TryCollect() : void
+    - OnTriggerEnter(other:Collider) : void
+    - OnTriggerExit(other:Collider) : void
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- ItemCollector
+ItemCollector o-> "itemsInRange" CollectableItem
+ItemCollector --> "currentHighlight" CollectableItem
+class PlayerMove {
+    + moveSpeed : float = 3f
+    - Start() : void
+    - Update() : void
+}
+MonoBehaviour <|-- PlayerMove
+PlayerMove --> "animator" Animator
+class PlayerMove3D {
+    + speed : float = 5f
+    - Start() : void
+    - Update() : void
+}
+MonoBehaviour <|-- PlayerMove3D
+PlayerMove3D --> "anim" Animator
+@enduml

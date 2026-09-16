@@ -1,0 +1,13 @@
+@startuml
+class SoilScript {
+    - playerNear : bool = false
+    - state : int = 0
+    - Update() : void
+    - Plant() : void
+    - OnTriggerEnter(other:Collider) : void
+    - OnTriggerExit(other:Collider) : void
+}
+MonoBehaviour <|-- SoilScript
+SoilScript --> "cropPrefab" GameObject
+SoilScript --> "currentCrop" GameObject
+@enduml

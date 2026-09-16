@@ -1,0 +1,19 @@
+@startuml
+class PlayerController {
+    + walkSpeed : float = 5.0f
+    + runSpeed : float = 9.0f
+    + angularVelocity : float = 3.0f
+    - speed : float
+    - x : float
+    - z : float
+    - isRunning : bool = false
+    - Start() : void
+    - Update() : void
+    - FixedUpdate() : void
+}
+MonoBehaviour <|-- PlayerController
+PlayerController --> "rb" Rigidbody
+PlayerController --> "tf" Transform
+PlayerController --> "animator" Animator
+PlayerController --> "onigiriItem" ItemData
+@enduml

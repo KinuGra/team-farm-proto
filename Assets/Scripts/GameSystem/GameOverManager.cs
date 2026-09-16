@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 public class GameOverManager : MonoBehaviour
 {
     public static GameOverManager instance;
-
-    private bool isGameOver = false;
+    public bool isGameOverEnabled { get; private set; } = true;
+    public bool isGameOver { get; private set; } = false;
 
     void Awake()
     {
@@ -26,12 +26,13 @@ public class GameOverManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (isGameOver) return;
+        if (!isGameOverEnabled) return; // ゲームオーバー可能か
+        if (isGameOver) return; // すでにゲームオーバー
         isGameOver = true;
 
         Debug.Log("=== GAME OVER ===");
 
-        // プレイヤーの動きを止める
+        // プレイヤーの動きを止める(✡重くなりそう)
         PlayerController player = FindAnyObjectByType<PlayerController>();
         if (player != null)
         {
@@ -44,6 +45,12 @@ public class GameOverManager : MonoBehaviour
 
     void RestartScene()
     {
+        SetGameOverEnabled(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SetGameOverEnabled(bool enabled)
+    {
+        isGameOverEnabled = enabled;
     }
 }

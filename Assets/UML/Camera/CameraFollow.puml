@@ -1,0 +1,13 @@
+@startuml
+class CameraFollow {
+    + distance : float = 1.0f
+    + height : float = 1.5f
+    + smoothTime : float = 0.1f
+    + lookDistance : float = 1.0f
+    + lookHeight : float = 0.5f
+    - LateUpdate() : void
+}
+MonoBehaviour <|-- CameraFollow
+CameraFollow --> "target" Transform
+CameraFollow o-> "velocity" Vector3
+@enduml

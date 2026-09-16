@@ -1,0 +1,9 @@
+@startuml
+class PlayerMove3D {
+    + speed : float = 5f
+    - Start() : void
+    - Update() : void
+}
+MonoBehaviour <|-- PlayerMove3D
+PlayerMove3D --> "anim" Animator
+@enduml

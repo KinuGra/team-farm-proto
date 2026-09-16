@@ -1,0 +1,17 @@
+@startuml
+class FishingManager {
+    - isFishing : bool = false
+    - Awake() : void
+    + SetCurrentSpot(spot:FishingSpot) : void
+    + ClearCurrentSpot(spot:FishingSpot) : void
+    + TryStartFishing() : void
+    - StartFishing(spot:FishingSpot) : void
+    - WaitForFish(spot:FishingSpot) : IEnumerator
+    - EndFish(spot:FishingSpot) : void
+}
+MonoBehaviour <|-- FishingManager
+FishingManager --> "instance" FishingManager
+FishingManager --> "currentSpot" FishingSpot
+FishingManager o-> "fishSelector" IFishSelector
+FishingManager o-> "fishingTimeCalculator" IFishingTimeCalculator
+@enduml

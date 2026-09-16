@@ -1,0 +1,11 @@
+@startuml
+class CollectableItem {
+    - quantity : int = 1
+    + Quantity : int <<get>>
+    - OnValidate() : void
+    + Collect(inventory:InventoryManager) : bool
+}
+MonoBehaviour <|-- CollectableItem
+CollectableItem --> "itemData" ItemData
+CollectableItem --> "ItemData" ItemData
+@enduml

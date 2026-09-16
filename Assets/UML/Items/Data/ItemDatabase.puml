@@ -1,0 +1,19 @@
+@startuml
+class ItemDatabase {
+    - Awake() : void
+    - InitializeDatabase() : void
+    + GetItemById(id:int) : ItemData
+    + GetItemByName(name:string) : ItemData
+    + GetAllItems() : IReadOnlyList<ItemData>
+    + ItemCount : int <<get>>
+}
+class "List`1"<T> {
+}
+class "Dictionary`2"<T1,T2> {
+}
+MonoBehaviour <|-- ItemDatabase
+ItemDatabase --> "instance" ItemDatabase
+ItemDatabase o-> "items" ItemData
+ItemDatabase o-> "itemsById" int,ItemData
+ItemDatabase o-> "itemsByName" string,ItemData
+@enduml

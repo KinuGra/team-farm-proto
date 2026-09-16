@@ -1,0 +1,11 @@
+@startuml
+class GameOverManager {
+    - isGameOver : bool = false
+    - Awake() : void
+    + IsGameOver() : bool
+    + GameOver() : void
+    - RestartScene() : void
+}
+MonoBehaviour <|-- GameOverManager
+GameOverManager --> "instance" GameOverManager
+@enduml

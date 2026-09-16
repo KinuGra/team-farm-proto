@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour
     private Transform tf;
     private Animator animator;
 
-    [SerializeField] private ItemData cookedRiceItem;
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -27,13 +25,12 @@ public class PlayerController : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
         isRunning = Input.GetKey(KeyCode.LeftShift);
-        // テスト用: Pキーでおにぎり取得
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (cookedRiceItem != null)
-            {
-                InventoryManager.instance.AddItem(cookedRiceItem);
-            }
+
+        // 現状釣りのみ、✡キー入力を後でまとめる。
+        if (Input.GetKeyDown(KeyCode.F))
+        {   
+            if(FishingManager.instance != null)
+                FishingManager.instance.TryStartFishing();
         }
     }
     void FixedUpdate()
@@ -73,6 +70,15 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("Run", false);
             }
         }
+    }
+
+    /// <summary>
+    /// プレイヤーの操作を有効/無効にする
+    /// ✡いつか書く
+    /// </summary>
+    public void SetControlActive(bool active)
+    {
+        Debug.Log("操作停止");
     }
     
 }

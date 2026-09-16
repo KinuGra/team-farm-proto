@@ -1,0 +1,7 @@
+@startuml
+class Resident {
+    # <<override>> OnTransactionExecuted(transaction:Transaction) : void
+    # <<override>> OnTransactionUnavailable() : void
+}
+Workstation <|-- Resident
+@enduml

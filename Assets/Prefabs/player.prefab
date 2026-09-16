@@ -106,6 +106,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 514b336bd92db844589b8069cff638d6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1501736194614148958}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 514b336bd92db844589b8069cff638d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 347026700179382130}
   m_SourcePrefab: {fileID: 100100000, guid: 514b336bd92db844589b8069cff638d6, type: 3}
 --- !u!1 &7518968986373690805 stripped
 GameObject:
@@ -127,6 +130,7 @@ MonoBehaviour:
   cropPrefab: {fileID: 1456896391350218941, guid: 2a8c3828ca71fe94181173ccf5c274ab, type: 3}
   plantHeight: 1.5
   rayDistance: 2
+  riceItem: {fileID: 0}
   canPlantColor: {r: 0, g: 1, b: 0, a: 1}
   cannotPlantColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &380078309061299217
@@ -141,7 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bcd58078da4ddc419bbe42879fab9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 5
+  walkSpeed: 5
+  runSpeed: 9
+  angularVelocity: 3
 --- !u!136 &3329412861661819764
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -226,3 +232,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c88fb2320977834f9f3df9be81b875f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemCollector
+--- !u!114 &347026700179382130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7518968986373690805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b016074eb0611b642aa16121280b0d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugAction
+  testItem: {fileID: 11400000, guid: e2cc2addb5029244b95efbd674eb29ec, type: 2}

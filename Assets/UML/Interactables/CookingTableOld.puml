@@ -1,0 +1,14 @@
+@startuml
+class CookingTableOld {
+    + interactDistance : float = 2f
+    - Start() : void
+    - Update() : void
+    - TryCraft() : void
+}
+MonoBehaviour <|-- CookingTableOld
+CookingTableOld --> "cookedRiceItem" ItemData
+CookingTableOld --> "cookedWakameItem" ItemData
+CookingTableOld --> "onigiriItem" ItemData
+CookingTableOld --> "player" Transform
+CookingTableOld --> "highlight" HighlightController
+@enduml

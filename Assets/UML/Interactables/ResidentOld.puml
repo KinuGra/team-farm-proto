@@ -1,0 +1,16 @@
+@startuml
+class ResidentOld {
+    + interactDistance : float = 2.0f
+    - itemCount : int
+    - Start() : void
+    - Update() : void
+    - HasAnyTradableItem() : bool
+    - TryTrade() : void
+}
+class "List`1"<T> {
+}
+MonoBehaviour <|-- ResidentOld
+ResidentOld o-> "tradableItems" ItemData
+ResidentOld --> "player" Transform
+ResidentOld --> "highlight" HighlightController
+@enduml
