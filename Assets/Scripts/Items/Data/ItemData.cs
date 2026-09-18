@@ -8,11 +8,12 @@ public class ItemData : ScriptableObject
 {
     [SerializeField] private int itemId;
     [SerializeField] private string itemName;
-    [SerializeField] private string description;
     [SerializeField] private int maxStack = 99;
     [SerializeField] private int value = 0;
     [SerializeField] private Sprite icon;
     [SerializeField] private GameObject model;
+    [TextArea(3, 10)]
+    [SerializeField] private string description;
     public int ItemId => itemId;
     public string ItemName => itemName;
     public string Description => description;

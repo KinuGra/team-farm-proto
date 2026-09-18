@@ -146,7 +146,7 @@ public class ItemSlots : MonoBehaviour
 
     public ItemData GetActiveItemData()
     {
-        Debug.Log(InventoryManager.instance.Items[activeSlotIndex].ItemData);
+        if(InventoryManager.instance.Items.Count <= 0) return null;
         return InventoryManager.instance.Items[activeSlotIndex].ItemData;
     }
 }

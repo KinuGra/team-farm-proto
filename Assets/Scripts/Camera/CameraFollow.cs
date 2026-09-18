@@ -24,7 +24,9 @@ public class CameraFollow : MonoBehaviour
             transform.position,
             desiredPosition,
             ref velocity,
-            smoothTime
+            smoothTime,
+            Mathf.Infinity,
+            Time.unscaledDeltaTime // 第6引数に明示指定
         );
 
         Vector3 lookTarget = target.position + target.forward*lookDistance + Vector3.up*lookHeight;

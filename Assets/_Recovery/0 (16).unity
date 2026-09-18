@@ -1017,7 +1017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2378121177262301349, guid: f3f8062ccb558f54a8f04644a70d398d, type: 3}
       propertyPath: m_MatchWidthOrHeight
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2378121177262301349, guid: f3f8062ccb558f54a8f04644a70d398d, type: 3}
       propertyPath: m_ReferenceResolution.x
@@ -1073,7 +1073,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5211916665083189711, guid: f3f8062ccb558f54a8f04644a70d398d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -100
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 6314383912556115839, guid: f3f8062ccb558f54a8f04644a70d398d, type: 3}
       propertyPath: m_Type
@@ -2092,7 +2092,7 @@ MonoBehaviour:
   target: {fileID: 547916242}
   distance: 1
   height: 1.5
-  smoothTime: 0
+  smoothTime: 0.02
   lookDistance: 1
   lookHeight: 0.5
 --- !u!114 &1959086248
@@ -2490,6 +2490,10 @@ PrefabInstance:
     - target: {fileID: 380078309061299217, guid: 097eb7f4b0ed88144b787ce4547196f4, type: 3}
       propertyPath: angularVelocity
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806017005538797522, guid: 097eb7f4b0ed88144b787ce4547196f4, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3329412861661819764, guid: 097eb7f4b0ed88144b787ce4547196f4, type: 3}
       propertyPath: m_Height
