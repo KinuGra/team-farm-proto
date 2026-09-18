@@ -8,9 +8,10 @@ public class FishData : ScriptableObject
 {
     [SerializeField] private int fishId; // 魚のID
     [SerializeField] private string fishName; // 魚の名前
-    [SerializeField] private string description; // 魚の説明
     [SerializeField] private int weight; // 魚の重さ
     [SerializeField] private ItemData item; // 魚から得られるアイテム
+    [TextArea(3, 10)]
+    [SerializeField] private string description; // 魚の説明
     public int FishId => fishId;
     public string FishName => fishName;
     public string Description => description;

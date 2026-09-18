@@ -45,12 +45,12 @@ public class FadeEffect : ITransitionEffect
     // 画面を徐々に暗くする（PlayOut）
     public IEnumerator PlayOut()
     {
+        PlayerController player = UnityEngine.Object.FindAnyObjectByType<PlayerController>();
         if(GameOverManager.instance != null)
         {
             Debug.Log("ゲームオーバーを無効化");
             GameOverManager.instance.SetGameOverEnabled(false); // ゲームオーバーを無効化
         }
-        PlayerController player = UnityEngine.Object.FindAnyObjectByType<PlayerController>();
         if (player != null)
         {
             player.enabled = false;
@@ -83,6 +83,7 @@ public class FadeEffect : ITransitionEffect
         }
         if(GameOverManager.instance != null)
         {
+            Debug.Log("ゲームオーバーを有効化");
             GameOverManager.instance.SetGameOverEnabled(true); // ゲームオーバーを有効化
         }
         // 処理が終わったら、生成したCanvasごと綺麗に削除（ゴミを残さない）
